@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font (optional) */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb; /* light gray background */
+  color: #1f2937; /* Tailwind gray-800 */
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-weight: 700;
+  color: #065f46; /* Tailwind green-800 */
+}
+
+/* Links */
+a {
+  color: #047857; /* Tailwind green-600 */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+  @apply px-4 py-2 rounded bg-green-700 text-white font-semibold hover:bg-green-800 transition;
+}
+
+/* Image styling */
+img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section spacing */
+section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
