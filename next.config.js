@@ -11,6 +11,18 @@ const nextConfig = {
     appDir: false, // disable App Router since you're using Pages Router
   },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
+
+  // Redirect any unknown routes back to homepage
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "missing" }],
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
