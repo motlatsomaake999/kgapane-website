@@ -1,86 +1,69 @@
 import { useState, useEffect } from "react";
 
-const heroMedia = [
-  // 13 images
+const images = [
   "/hero/hero1.png", "/hero/hero2.jpg", "/hero/hero3.jpg", "/hero/hero4.jpg",
   "/hero/hero5.jpg", "/hero/hero6.png", "/hero/hero7.jpg", "/hero/hero8.jpg",
-  "/hero/hero9.jpg", "/hero/hero10.png", "/hero/hero11.png", "/hero/hero12.jpg",
-  "/hero/hero13.png",
+  "/hero/hero9.jpg", "/hero/hero10.png"
+];
 
-  // 10 videos
+const videos = [
   "/hero/hero1.mp4", "/hero/hero2.mp4", "/hero/hero3.mp4", "/hero/hero4.mp4",
   "/hero/hero5.mp4", "/hero/hero6.mp4", "/hero/hero7.mp4", "/hero/hero8.mp4",
   "/hero/hero9.mp4", "/hero/hero10.mp4"
 ];
 
 export default function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 2) % heroMedia.length);
-    }, 5000); // 5 seconds per slide
-    return () => clearInterval(interval);
-  }, []);
-
-  const currentPair = [
-    heroMedia[currentIndex],
-    heroMedia[(currentIndex + 1) % heroMedia.length]
-  ];
+    const timer = setTimeout(() => {
+      setIndex((prev) => (prev + 1) % Math.min(images.length, videos.length));
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, [index]);
 
   return (
-    <section className="relative h-[500px] md:h-[600px] overflow-hidden text-white flex flex-col justify-center">
-      <div className="flex w-full h-full gap-4 px-4">
-        {currentPair.map((media, idx) => {
-          const isVideo = media.endsWith(".mp4");
-          return (
-            <div
-              key={`${media}-${idx}`}
-              className="w-1/2 h-full border-4 border-white rounded-xl shadow-xl overflow-hidden flex items-center justify-center bg-black"
-            >
-              {isVideo ? (
-                <video
-                  src={media}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    const fallback = document.createElement("div");
-                    fallback.className = "w-full h-full flex items-center justify-center text-white";
-                    fallback.textContent = "Video Missing";
-                    e.currentTarget.parentElement.appendChild(fallback);
-                  }}
-                />
-              ) : (
-                <img
-                  src={media}
-                  alt={`Hero media ${idx + 1}`}
-                  className="w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-                  style={{ imageRendering: "auto" }}
-                  onError={(e) => {
-                    e.currentTarget.src = "https://via.placeholder.com/600x400?text=Image+Missing";
-                  }}
-                />
-              )}
-            </div>
-          );
-        })}
+    // Reduced further: hero now only takes half the viewport height
+    <section className="h-[50vh] w-full relative flex items-center justify-center px-3 py-2">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+
+      {/* Image + Video side by side */}
+      <div className="w-full h-full flex gap-3 z-10">
+        <div className="w-1/2 h-full border-2 border-white rounded-lg overflow-hidden">
+          <img
+            src={images[index]}
+            alt="Hero"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="w-1/2 h-full border-2 border-white rounded-lg overflow-hidden">
+          <video
+            src={videos[index]}
+            autoPlay
+            muted={muted}
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
-      {/* Gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-
-      {/* Text content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold drop-shadow-lg">
+      {/* Text + Controls */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-4">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold drop-shadow-lg">
           Welcome to Kgapane High School
         </h1>
-        <p className="mt-4 text-base sm:text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
+        <p className="mt-2 text-xs sm:text-sm md:text-base max-w-xl mx-auto drop-shadow-md">
           Excellence, equity, and innovation drive us forward.
         </p>
+        <button
+          onClick={() => setMuted(!muted)}
+          className="mt-3 px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition text-xs sm:text-sm"
+        >
+          {muted ? "Unmute Video" : "Mute Video"}
+        </button>
       </div>
     </section>
   );

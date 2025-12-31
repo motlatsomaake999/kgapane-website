@@ -1,0 +1,49 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"          // you can switch to "postgresql" or "mysql" later if needed
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ClockLog {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  action    String
+  lat       Float?
+  lng       Float?
+  timestamp DateTime @default(now())
+}
+
+model Resource {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  fileUrl     String   // path or URL to uploaded file
+  subject     String?
+  grade       String?
+  uploadedBy  String   // educator username
+  createdAt   DateTime @default(now())
+}
+
+model Message {
+  id            Int      @id @default(autoincrement())
+  senderId      String   // educator username
+  recipientRole String   // e.g. "Learner", "Educator", "SMT"
+  content       String
+  createdAt     DateTime @default(now())
+}
+
+model LearnerRecord {
+  id        Int      @id @default(autoincrement())
+  learnerId String   // e.g. "class1-learner3"
+  type      String   // "strikes" | "commendations" | "awards" | "pastoral"
+  note      String
+  reporter  String   // SMT member or educator who recorded it
+  fileUrl   String?  // optional evidence file path
+  timestamp DateTime @default(now())
+}
+

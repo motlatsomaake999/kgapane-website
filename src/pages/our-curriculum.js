@@ -105,8 +105,8 @@ export default function Curriculum() {
         </ul>
       </AccordionSection>
 
-      {/* School Governance Documents */}
-      <AccordionSection title="School Governance Documents" icon="📄">
+      {/* Important Documents */}
+      <AccordionSection title="Important Documents" icon="📄">
         <ul className="list-disc list-inside text-blue-600 space-y-2">
           <li><Link href="/docs/code-of-conduct.pdf">Code of Conduct</Link></li>
           <li><Link href="/docs/assessment-policy.pdf">Assessment Policy</Link></li>
@@ -128,27 +128,6 @@ export default function Curriculum() {
           Open Assessment Calendar
         </a>
       </AccordionSection>
-
-      {/* Management Login */}
-      <div className="mt-10 text-center">
-        {!isManagement ? (
-          <button
-            onClick={handleLogin}
-            className="bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700"
-          >
-            Management Login
-          </button>
-        ) : (
-          <AccordionSection title="Management Workspace" icon="🔑">
-            <ul className="space-y-4">
-              <li className="border p-4 rounded shadow hover:bg-green-50">Commendations</li>
-              <li className="border p-4 rounded shadow hover:bg-green-50">Strikes</li>
-              <li className="border p-4 rounded shadow hover:bg-green-50">Learner Issues</li>
-              <li className="border p-4 rounded shadow hover:bg-green-50">Admin Tasks</li>
-            </ul>
-          </AccordionSection>
-        )}
-      </div>
     </section>
   );
 }

@@ -1,6 +1,7 @@
+// src/pages/login.js
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { users } from "../data/users";
+import { users } from "../data/users"; // make sure this file exists
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -10,14 +11,19 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    // check credentials against your users array
     const user = users.find(
       (u) => u.username === username && u.password === password
     );
 
     if (user) {
+      // store login state
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("role", user.role);
-      router.push("/management");
+      localStorage.setItem("username", user.username); // needed for clock in/out
+
+      // redirect to dashboard
+      router.push("/dashboard");
     } else {
       alert("Invalid credentials");
     }
@@ -30,7 +36,7 @@ export default function Login() {
         className="bg-white shadow-md rounded-lg p-8 w-full max-w-md"
       >
         <h1 className="text-2xl font-bold text-green-800 mb-6 text-center">
-          Management Login
+          Login
         </h1>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">Username</label>
