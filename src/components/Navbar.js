@@ -20,48 +20,16 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Navigation Links always horizontal */}
-        <ul className="flex justify-end items-center gap-4 font-semibold overflow-x-auto">
-          <li>
-            <Link href="/about" className="text-white hover:text-orange-300 transition">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/our-curriculum" className="text-white hover:text-orange-300 transition">
-              Curriculum
-            </Link>
-          </li>
-          <li>
-            <Link href="/our-staff" className="text-white hover:text-orange-300 transition">
-              Our Staff
-            </Link>
-          </li>
-          <li className="relative group">
-            <Link href="/activities" className="text-white hover:text-orange-300 transition">
-              Activities ▾
-            </Link>
-          </li>
-          <li>
-            <Link href="/other-stakeholders" className="text-white hover:text-orange-300 transition">
-              Other Stakeholders
-            </Link>
-          </li>
-          <li>
-            <Link href="/notice-board" className="text-white hover:text-orange-300 transition">
-              Notice Board
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="text-white hover:text-orange-300 transition">
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link href="/dashboard" className="text-white hover:text-orange-300 transition">
-              Dashboard
-            </Link>
-          </li>
+        {/* Navigation Links: horizontal + scrollable */}
+        <ul className="flex gap-6 font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <li><Link href="/about" className="text-white hover:text-orange-300 transition">About</Link></li>
+          <li><Link href="/our-curriculum" className="text-white hover:text-orange-300 transition">Curriculum</Link></li>
+          <li><Link href="/our-staff" className="text-white hover:text-orange-300 transition">Our Staff</Link></li>
+          <li><Link href="/activities" className="text-white hover:text-orange-300 transition">Activities ▾</Link></li>
+          <li><Link href="/other-stakeholders" className="text-white hover:text-orange-300 transition">Other Stakeholders</Link></li>
+          <li><Link href="/notice-board" className="text-white hover:text-orange-300 transition">Notice Board</Link></li>
+          <li><Link href="/contact" className="text-white hover:text-orange-300 transition">Contact</Link></li>
+          <li><Link href="/dashboard" className="text-white hover:text-orange-300 transition">Dashboard</Link></li>
         </ul>
       </div>
     </nav>
