@@ -1,13 +1,17 @@
-import "../styles/globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// pages/_app.js
+import "@/styles/globals.css";
+import Navbar from "@/components/Navbar";
 
-export default function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
-    <>
+    <div className="min-w-[1280px] overflow-x-auto">
+      {/* Sticky Navbar */}
       <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </>
+
+      {/* Main content with top padding so it doesn't hide behind navbar */}
+      <main className="pt-[72px]">
+        <Component {...pageProps} />
+      </main>
+    </div>
   );
 }

@@ -21,8 +21,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Navigation Links: horizontal + scrollable */}
-        <ul className="flex gap-6 font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
+        {/* Navigation Links: always horizontal */}
+        <ul className="flex gap-6 font-semibold whitespace-nowrap">
           <li><Link href="/about" className="text-white hover:text-orange-300 transition">About</Link></li>
           <li><Link href="/our-curriculum" className="text-white hover:text-orange-300 transition">Curriculum</Link></li>
           <li><Link href="/our-staff" className="text-white hover:text-orange-300 transition">Our Staff</Link></li>
