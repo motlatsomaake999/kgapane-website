@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="bg-green-700 px-6 py-4 shadow">
+    <nav className="bg-green-700 px-4 py-3 shadow fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* Logo + School Name flush left */}
@@ -11,17 +11,17 @@ export default function Navbar() {
           <Image
             src="/logo.png"
             alt="Kgapane High School Logo"
-            width={64}
-            height={64}
+            width={48}
+            height={48}
             className="object-contain"
           />
-          <span className="text-xl font-bold text-white">
+          <span className="text-lg font-bold text-white">
             Kgapane High School
           </span>
         </Link>
 
-        {/* Navigation Links fill remaining space */}
-        <ul className="flex flex-wrap justify-end space-x-6 font-semibold">
+        {/* Navigation Links always horizontal */}
+        <ul className="flex justify-end items-center gap-4 font-semibold overflow-x-auto">
           <li>
             <Link href="/about" className="text-white hover:text-orange-300 transition">
               About
@@ -58,7 +58,6 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            {/* ✅ Fixed: now points to /dashboard */}
             <Link href="/dashboard" className="text-white hover:text-orange-300 transition">
               Dashboard
             </Link>
